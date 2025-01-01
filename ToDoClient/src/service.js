@@ -4,7 +4,7 @@ import axios from 'axios';
 //const apiUrl = "http://localhost:5119"; 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-//axios.defaults.baseURL = apiUrl;
+axios.defaults.baseURL = "'https://todolistserver-vgxn.onrender.com/";
 
 console.log("apiUrl:", apiUrl);
 
@@ -26,7 +26,7 @@ axios.interceptors.response.use(
 export default {
   getTasks: async () => {
     try {
-      const result = await axios.get('https://todo-list-server-ofps.onrender.com/tasks');  // נשתמש ב-baseURL
+      const result = await axios.get('/tasks');  // נשתמש ב-baseURL
       console.log(result.data);
       return result.data;
     } catch (error) {
