@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
-        builder.WithOrigins("http://localhost:3000")  // מאפשר רק מהכתובת המקומית שלך
+        builder.WithOrigins("https://to-do-list-yubg.onrender.com")  // כתובת הלקוח שלך
                .AllowAnyMethod()
                .AllowAnyHeader());
 });
