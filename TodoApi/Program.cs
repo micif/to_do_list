@@ -22,11 +22,11 @@ builder.Services.AddDbContext<ToDoDbContext>(options =>
 var app = builder.Build();
 
 // אם נמצא במצב פיתוח, הפעלת Swagger UI
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+// }
 
 // שימוש במדיניות CORS
 app.UseCors("AllowAll");
