@@ -1,16 +1,12 @@
 import axios from 'axios';
 
-// הגדרת כתובת ה-API כ-default לכל הקריאות
-//const apiUrl = "http://localhost:5119"; 
-const apiUrl = process.env.REACT_APP_API_URL;
+// אם יש לך קובץ .env, ודא ש-REACT_APP_API_URL מוגדר שם.
+const apiUrl = process.env.REACT_APP_API_URL || 'https://todolistserver-vgxn.onrender.com/';
 
-axios.defaults.baseURL = "'https://todolistserver-vgxn.onrender.com/";
-
-console.log("apiUrl:", apiUrl);
+axios.defaults.baseURL = apiUrl;  // הגדרת baseURL לפי משתנה הסביבה או URL ברירת המחדל
+console.log("API Base URL:", apiUrl);
 
 // הגדרת axios defaults
-// axios.defaults.baseURL = apiUrl;
-// console.log("axios.defaults.baseURL:", axios.defaults.baseURL);
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 // הוספת Interceptor לתפיסת שגיאות ב-response
@@ -31,7 +27,7 @@ export default {
       return result.data;
     } catch (error) {
       console.error('Error getting tasks:', error);
-      return { error: 'Failed to getting tasks' };
+      return { error: 'Failed to get tasks' };  // תקן את השגיאה
     }
   },
 
@@ -49,7 +45,7 @@ export default {
   setCompleted: async (id, isComplete) => {
     console.log('setCompleted', { id, isComplete });
     try {
-      const response = await axios.put(`/tasks/${id}`, isComplete);
+      const response = await axios.put(`/tasks/${id}`, { isComplete });  // שלח את isComplete כ-אובייקט
       return response.data;
     } catch (error) {
       console.error('Error setting task completion:', error);
