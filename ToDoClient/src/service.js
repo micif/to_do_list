@@ -42,10 +42,13 @@ export default {
     }
   },
 
-  setCompleted: async (id, isComplete) => {
-    console.log('setCompleted', { id, isComplete });
+  setCompleted: async (id, isComplete, name) => {
+    console.log('setCompleted', { id, isComplete, name });
     try {
-      const response = await axios.put(`/tasks/${id}`, { isComplete });  // שלח את isComplete כ-אובייקט
+      const response = await axios.put(`/tasks/${id}`, { 
+        isComplete,
+        name 
+      });
       return response.data;
     } catch (error) {
       console.error('Error setting task completion:', error);

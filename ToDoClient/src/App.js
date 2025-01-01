@@ -19,10 +19,11 @@ function App() {
   }
 
   async function updateCompleted(todo, isComplete) {
-    todo.isComplete=isComplete
-    await service.setCompleted(todo.id, todo);
-    await getTodos();//refresh tasks list (in order to see the updated one)
+    // עדכון רק את מצב ה-isComplete של המשימה
+    await service.setCompleted(todo.id, isComplete, todo.name); 
+    await getTodos(); // עדכון רשימת המשימות
   }
+  
 
   async function deleteTodo(id) {
     await service.deleteTask(id);
