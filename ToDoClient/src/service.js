@@ -3,7 +3,7 @@ import axios from 'axios';
 // אם יש לך קובץ .env, ודא ש-REACT_APP_API_URL מוגדר שם.
 const apiUrl = process.env.REACT_APP_API_URL || 'https://todolistserver-vgxn.onrender.com/';
 
-axios.defaults.baseURL = apiUrl;  // הגדרת baseURL לפי משתנה הסביבה או URL ברירת המחדל
+axios.defaults.baseURL = "https://"+apiUrl;  // הגדרת baseURL לפי משתנה הסביבה או URL ברירת המחדל
 console.log("API Base URL:", apiUrl);
 
 // הגדרת axios defaults
