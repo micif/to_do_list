@@ -9,8 +9,8 @@ const apiUrl = process.env.REACT_APP_API_URL;
 console.log("apiUrl:", apiUrl);
 
 // הגדרת axios defaults
-axios.defaults.baseURL = apiUrl;
-console.log("axios.defaults.baseURL:", axios.defaults.baseURL);
+// axios.defaults.baseURL = apiUrl;
+// console.log("axios.defaults.baseURL:", axios.defaults.baseURL);
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 // הוספת Interceptor לתפיסת שגיאות ב-response
