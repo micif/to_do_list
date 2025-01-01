@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\TodoApi.csproj": {}
+    "C:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\TodoApi.csproj": {}
   },
   "projects": {
-    "c:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\TodoApi.csproj": {
+    "C:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\TodoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\TodoApi.csproj",
+        "projectUniqueName": "C:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\TodoApi.csproj",
         "projectName": "TodoApi",
-        "projectPath": "c:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\TodoApi.csproj",
+        "projectPath": "C:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\TodoApi.csproj",
         "packagesPath": "C:\\Users\\The user\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\obj\\",
+        "outputPath": "C:\\Users\\The user\\Desktop\\practicode\\ToDoList\\TodoApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

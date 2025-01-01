@@ -3,12 +3,14 @@ using TodoApi;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowReactApp",
-        policy => policy.WithOrigins("http://localhost:3000") 
-                     .AllowAnyHeader()
-                     .AllowAnyMethod());
-});
+    {
+        options.AddPolicy("AllowAll", builder =>
+            builder.AllowAnyOrigin() // מאפשר לכל המקורות
+                   .AllowAnyMethod()
+                   .AllowAnyHeader());
+    });
+
+// הוספת מדיניות CORS
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -19,12 +21,15 @@ builder.Services.AddDbContext<ToDoDbContext>(options =>
 
 var app = builder.Build();
 
-// if (app.Environment.IsDevelopment())
-// {
+// אם נמצא במצב פיתוח, הפעלת Swagger UI
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-// }
-app.UseCors("AllowReactApp");
+}
+
+// שימוש במדיניות CORS
+app.UseCors("AllowAll");
 
 app.MapGet("/", async (ToDoDbContext context) =>
 {
@@ -32,7 +37,10 @@ app.MapGet("/", async (ToDoDbContext context) =>
 });
 
 app.MapGet("/tasks", async (ToDoDbContext context) =>
+
 {
+    Console.WriteLine(builder.Configuration["ConnectionStrings__ToDoDB"]);
+
     var tasks = await context.Tasks.ToListAsync();
     return Results.Ok(tasks);
 });
@@ -68,6 +76,5 @@ app.MapDelete("/tasks/{id}", async (int id, ToDoDbContext context) =>
     }
     return Results.NotFound();
 });
-
 
 app.Run();
