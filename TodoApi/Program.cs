@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
-        builder.AllowAnyOrigin()
+        builder.WithOrigins("http://localhost:3000")  // מאפשר רק מהכתובת המקומית שלך
                .AllowAnyMethod()
                .AllowAnyHeader());
 });
@@ -15,12 +15,14 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// קביעת החיבור לבסיס נתונים
 builder.Services.AddDbContext<ToDoDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("ToDoDB"), 
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("ToDoDB"))));
 
 var app = builder.Build();
 
+// הפעלת Swagger UI
 app.UseSwagger();
 app.UseSwaggerUI();
 
