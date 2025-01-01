@@ -2,15 +2,15 @@ using Microsoft.EntityFrameworkCore;
 using TodoApi;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCors(options =>
-    {
-        options.AddPolicy("AllowAll", builder =>
-            builder.AllowAnyOrigin() // מאפשר לכל המקורות
-                   .AllowAnyMethod()
-                   .AllowAnyHeader());
-    });
 
 // הוספת מדיניות CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,12 +21,8 @@ builder.Services.AddDbContext<ToDoDbContext>(options =>
 
 var app = builder.Build();
 
-// אם נמצא במצב פיתוח, הפעלת Swagger UI
-// if (app.Environment.IsDevelopment())
-// {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-// }
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // שימוש במדיניות CORS
 app.UseCors("AllowAll");
@@ -37,10 +33,7 @@ app.MapGet("/", async (ToDoDbContext context) =>
 });
 
 app.MapGet("/tasks", async (ToDoDbContext context) =>
-
 {
-    Console.WriteLine(builder.Configuration["ConnectionStrings__ToDoDB"]);
-
     var tasks = await context.Tasks.ToListAsync();
     return Results.Ok(tasks);
 });
